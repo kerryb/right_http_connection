@@ -21,8 +21,6 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #
 
-STDERR.puts 'WARNING: right_http_connection gem has been changed!'
-
 require "net/https"
 require "uri"
 require "time"
@@ -288,8 +286,7 @@ them.
       @protocol = request_params[:protocol]
 
       @logger.info("Opening new #{@protocol.upcase} connection to #@server:#@port")
-      # @http = Net::HTTP.new(@server, @port)
-      @http = Net::HTTP::Proxy('proxy.intra.bt.com', 8080).new(@server, @port)
+      @http = Net::HTTP.new(@server, @port)
       @http.open_timeout = @params[:http_connection_open_timeout]
       @http.read_timeout = @params[:http_connection_read_timeout]
 
