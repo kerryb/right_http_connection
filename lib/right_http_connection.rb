@@ -34,7 +34,7 @@ module RightHttpConnection #:nodoc:
   module VERSION #:nodoc:
     MAJOR = 1
     MINOR = 2
-    TINY  = 4
+    TINY  = 5
 
     STRING = [MAJOR, MINOR, TINY].join('.')
   end
@@ -284,9 +284,16 @@ them.
       @server   = request_params[:server]
       @port     = request_params[:port]
       @protocol = request_params[:protocol]
+      @proxy = request_params[:proxy]
 
       @logger.info("Opening new #{@protocol.upcase} connection to #@server:#@port")
-      @http = Net::HTTP.new(@server, @port)
+      if @proxy
+        @logger.info("Using proxy #{@proxy}")
+        proxy_uri = URI::parse(@proxy)
+        @http = Net::HTTP::Proxy(proxy_uri.host, proxy_uri.port).new(@server, @port)
+      else
+        @http = Net::HTTP.new(@server, @port)
+      end
       @http.open_timeout = @params[:http_connection_open_timeout]
       @http.read_timeout = @params[:http_connection_read_timeout]
 
