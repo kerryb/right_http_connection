@@ -14,7 +14,7 @@ require File.join(File.dirname(__FILE__), 'lib', 'right_http_connection')
 AUTHOR = 'RightScale'  # can also be an array of Authors
 EMAIL = "rubygems@rightscale.com"
 DESCRIPTION = "RightScale's robust HTTP/S connection module"
-GEM_NAME = 'right_http_connection' # what ppl will type to install your gem
+GEM_NAME = 'kerryb-right_http_connection' # what ppl will type to install your gem
 RUBYFORGE_PROJECT = 'rightscale' # The unix name for your project
 HOMEPATH = "http://#{RUBYFORGE_PROJECT}.rubyforge.org"
 DOWNLOAD_PATH = "http://rubyforge.org/projects/#{RUBYFORGE_PROJECT}"
